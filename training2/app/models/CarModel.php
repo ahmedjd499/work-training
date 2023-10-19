@@ -94,6 +94,38 @@ final class CarModel {
         }
     }
 
+    public static function getFreeCar($date_start) {
+        self::establishConnect();
+        self::setTablename();
+    
+        $sql = "SELECT " . self::$tablename . ".* FROM " . self::$tablename . " 
+                LEFT JOIN rent ON " . self::$tablename . ".id = rent.car_id 
+                WHERE rent.car_id IS NULL OR rent.rent_end < ? 
+                OR " . self::$tablename . ".id NOT IN (SELECT car_id FROM rent )";
+    
+        $stmt = self::$conn->prepare($sql);
+    
+        if ($stmt === false) {
+            echo "Error in SQL query: " . self::$conn->error;
+            return array();
+        }
+    
+        $stmt->bind_param("s", $date_start);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result->num_rows > 0) {
+            $Cars = array();
+            while ($row = $result->fetch_assoc()) {
+                $Cars[] = $row;
+            }
+            return $Cars;
+        } else {
+            return array();
+        }
+    }
+    
+
 
     public static function getAllCars() {
         self::establishConnect();

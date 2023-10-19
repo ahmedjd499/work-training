@@ -31,10 +31,14 @@ class RentController
 
 
 
-    public function loadRentForm($carId)
+    public function loadRentForm()
     {
         require('checkLogin.php');
+ 
 
+           
+    
+           
             include './views/addRent.php';
         
     }
@@ -48,21 +52,24 @@ class RentController
 
             $date_start=date("Y-m-d H:i", strtotime($_POST["rent_start"]));
             $date_end=date("Y-m-d H:i", strtotime($_POST["rent_end"]));
+            $action=$_POST["action"] ;
             $carId=$_POST["car_id"];
-          //  echo $carId ;die ;
-            $car=$this->carModel::getCarById($carId);
             $userId=unserialize($_COOKIE['user'])['id'] ;
-            $totalPrice=$this->calculateHoursDifference($date_start,$date_end) * $car['hourly_price'];
-;
+            if($action=="rent")
             try 
            {  
+            $car=$this->carModel::getCarById($carId);
+            $totalPrice=$this->calculateHoursDifference($date_start,$date_end) * $car['hourly_price'];
                 $this->rentModel::createRent($carId, $userId, $totalPrice,$date_start,$date_end);
-            echo '<script>alert("rent  requested")</script>' ;
+                  echo '<script>alert("rent  requested")</script>' ;
              
-               // header('Location: index.php?action=profile');
-            }
+            } catch (Exception) {
+                echo '<script>alert("rent failed please try again")</script>';
+            }else {
+               $carsList=$this->carModel::getFreeCar($date_start);
+               include ('views/freeCarsList.php');
 
-            catch (Exception) {echo '<script>alert("registration failed please try again")</script>';}
+            }
         } else
 
             echo '<script>alert("rent failed please try again")</script>' ;

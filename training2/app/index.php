@@ -80,7 +80,7 @@ switch ($action) {
         $carController->getCarPhotos($_GET['id']);
         break;
     case 'loadRentForm':
-        $rentController->loadRentForm($_GET['car_id']);
+        $rentController->loadRentForm();
         break;
     case 'addRent':
         $rentController->addRent();

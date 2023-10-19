@@ -141,7 +141,6 @@ class CarController
     public function getCarPhotos($carId)
     {
         require_once('checkLogin.php');
-        require_once('checkAdmin.php');
 
         $carsPhotosList = $this->carModel::getAllPhotos($carId);
         include './views/carsPhotoslist.php';
