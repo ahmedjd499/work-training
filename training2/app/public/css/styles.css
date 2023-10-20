@@ -115,7 +115,12 @@ h1{
   margin: 10rem auto;
   border-radius:1rem ;
 }
-
+.container a {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  outline: 1px solid rgb(184, 92, 82);
+}
 .searchForm{ width: 95%;
   display: flex;
   flex-direction: row;
@@ -166,12 +171,19 @@ label {
 input[type="email"],
 input[type="password"] {
   width: 100%;
+  max-width: 20rem;
   padding: 10px;
-  margin: 5px 0;
+  margin: 5px auto;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
+.login-form{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 #photo {
   display: none;
 }
@@ -303,6 +315,10 @@ tr a,button {
 }
 
 tr:hover {
- background-color:rgb(203, 195, 180);
- margin-bottom: 0.7rem;
+ background-color:rgb(236, 177, 163) !important; 
+}
+
+td{
+  border-left: 1px solid gray;
+  text-align: center;
 }

@@ -71,7 +71,7 @@ switch ($action) {
         $carController->delete($_GET['id']);
         break;
     case 'deleteCarPhoto':
-        $carController->deleteCarPhoto($_GET['id'],$_GET['car_id']);
+        $carController->deleteCarPhoto($_GET['id'], $_GET['car_id']);
         break;
     case 'editCar':
         $carController->edit($_GET['id']);
@@ -87,6 +87,12 @@ switch ($action) {
         break;
     case 'allRents':
         $rentController->allRents();
+        break;
+    case 'calendar':
+        $rentController->calendar();
+         break;
+    case 'myRents':
+        $rentController->myRents();
         break;
     default:
         // Redirect to the login page or home page

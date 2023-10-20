@@ -18,6 +18,9 @@ $user = unserialize($_COOKIE['user']);
 
 <head>
     <title>User Profile</title>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="public/css/styles.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -102,7 +105,7 @@ $user = unserialize($_COOKIE['user']);
             background-color: white;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            width: 100%;
+            width:60%;
             padding: 1rem;
 
             opacity: 0;
@@ -128,19 +131,33 @@ $user = unserialize($_COOKIE['user']);
         }
 
         #close-popup {
-            background-color: #007bff;
+            background-color: lightcoral;
             color: white;
             border: none;
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 18px;
-            position: relative;
+            position: absolute;
+            right: 0;
         
         }
 
         #close-popup:hover {
-            background-color: #0056b3;
+            background-color: lightpink;
+        }
+        #open-popup{
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            right:0;
+            margin-right: 8rem;
+            margin-top: 3rem;
+        }
+        .myRents{
+            width: 80%;
+            padding: 2rem;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -159,13 +176,17 @@ $user = unserialize($_COOKIE['user']);
         <!-- You can also add links to edit profile, change password, etc. -->
         <a href="index.php?action=edit">Edit Profile</a>
         <a href="index.php?action=delete&id=<?php echo $user['id']; ?>">Delete Profile</a>
-        <button  id='open-popup'>rent a car</button>
         <a href="index.php?action=logout">Logout</a>
     </div>
 
+    <button  id='open-popup'>rent a car</button>
+
+        <div class="myRents">
+
+        </div>
     <div class="popup-overlay">
         <div class="popup-container">
-        <button id="close-popup">Close</button>
+        <button id="close-popup">X</button>
             <div class="popup-card">
                 <div class="rentDiv">
                 </div>
@@ -176,13 +197,14 @@ $user = unserialize($_COOKIE['user']);
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <script>
         function loadContent(page,div) {
 
             $.ajax({
                 url: page,
-                type: 'POST',
+                type: 'GET',
                 
                 success: function(data) {
                     // Replace the content of the "content" div with the response from the server.
@@ -194,7 +216,7 @@ $user = unserialize($_COOKIE['user']);
                 }
             });
         }
-      
+        loadContent('index.php?action=myRents','.myRents')
     </script>
     <script>
         const popupOverlay = document.querySelector(".popup-overlay");

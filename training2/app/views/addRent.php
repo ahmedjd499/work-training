@@ -14,12 +14,13 @@
             align-items: center;
             justify-content: center;
         }
-        .rent-form input{
+        #rent-form input{
 border-radius: 0.5rem; 
+padding: 0.5rem;
 margin: 0.5rem;
         }
     </style>
-      <h1 class="form-title">Add Rent</h1>
+      <h1 class="form-title">Search Rent</h1>
    <form action="index.php?action=addRent" method="POST"  id="rent-form">
       
         <input type="datetime-local" name="rent_start" id="date_start" min="<?php echo date("Y-m-d H:i:s");?>"  class="date-input" required value="<?php echo date("Y-m-d H:i:s");?>">
@@ -33,28 +34,6 @@ margin: 0.5rem;
 
 <script>
   
-// Handle form submission
-$("#rent-form").on("submit", function(event) {
-    event.preventDefault(); // Prevent the default form submission
-    // Serialize the form data to send in the request
-    var formData = $(this).serialize();
-
-    $.ajax({
-        url: 'index.php?action=addRent', // URL for your search action
-        type: 'POST', // Use POST method to send the form data
-        data: formData,
-        success: function(data) {
-            // Replace the content of the "content" div with the response from the server.
-            $('.freeCars').html(data);
-        },
-        error: function() {
-            // Handle the error case, e.g., show an error message.
-            alert('Error loading content.');
-        }
-    });
-});
-
-        
     </script>
    </body>
    </html>

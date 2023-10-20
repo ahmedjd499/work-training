@@ -50,7 +50,7 @@
             echo "<tr>";
             echo "<td>" . $user["id"] . "</td>";
             echo "<td>";
-            echo    "<img class='profile-image' src='public/uploads/". $photo ."' alt='Profile Image' width='100' height='100' id='photo'>" ;
+            echo    "<img class='profile-image' src='public/uploads/". $photo ."' alt='Profile Image' width='100' height='100' id='user-photo'>" ;
               
               echo "</td>";
             echo "<td>" . $user["email"] . "</td>";

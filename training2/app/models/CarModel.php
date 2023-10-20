@@ -83,7 +83,7 @@ final class CarModel {
     public static function getCarStatus($id) {
         self::establishConnect();
         self::setTablename() ;
-        $stmt = self::$conn->prepare("SELECT car_id FROM rent WHERE car_id = ? and rent_end > NOW()");
+        $stmt = self::$conn->prepare("SELECT car_id FROM rent WHERE car_id = ? and (rent_end > NOW() or rent_start > NOW() )");
         $stmt->bind_param("s", $id);
         $stmt->execute();
         $result = $stmt->get_result();

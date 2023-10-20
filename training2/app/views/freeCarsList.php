@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="public/css/styles.css">
+    
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
     <title>Document</title>
@@ -79,7 +81,7 @@
             echo "<td>" . $car["model"] . "</td>";
             echo "<td>" . $car["marque"] . "</td>";
             echo "<td>" . $car["hourly_price"] . "</td>";
-            echo "<td> <button onclick=loadcarPhotos('index.php?action=getCarPhotos&id=".$car["id"]."') style='border:1px solid rgb(0, 120, 205);color:black'>photos</button></td>";
+            echo "<td> <button onclick=loadcarPhotos('index.php?action=getCarPhotos&id=".$car["id"]."') style='border:none;background:rgb(96, 96, 120);color:white';>photos</button></td>";
             echo "<td >";
            echo "<form action='index.php?action=addRent' method='POST'>" ;
            echo "<input type='hidden' value='".$car["id"]."' name='car_id'>";

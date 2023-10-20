@@ -7,7 +7,7 @@
 </head>
 <body>
     
-    <form method="post" action="./index.php?action=login">
+    <form method="post" action="./index.php?action=login" class="login-form">
     <h1>Login</h1>
         <input type="email" name="email" required placeholder="Enter your Email"><br>
         

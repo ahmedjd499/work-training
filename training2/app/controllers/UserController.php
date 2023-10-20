@@ -27,7 +27,7 @@ class UserController
             } catch(Exception) {
                 echo "error while uploading file\n";}
             }else $uploadfile='default.png';
-      $role = 'user'; // You can set a default role or implement a role selection mechanism
+                $role = 'user'; // You can set a default role or implement a role selection mechanism
 
             // Validate input data (e.g., check for empty fields, valid email format, etc.)
 

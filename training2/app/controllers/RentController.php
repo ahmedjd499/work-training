@@ -61,12 +61,12 @@ class RentController
             $car=$this->carModel::getCarById($carId);
             $totalPrice=$this->calculateHoursDifference($date_start,$date_end) * $car['hourly_price'];
                 $this->rentModel::createRent($carId, $userId, $totalPrice,$date_start,$date_end);
-                  echo '<script>alert("rent  requested")</script>' ;
+                header('Location: index.php?action=profile');
              
             } catch (Exception) {
                 echo '<script>alert("rent failed please try again")</script>';
             }else {
-               $carsList=$this->carModel::getFreeCar($date_start);
+               $carsList=$this->carModel::getFreeCar($date_start,$date_end);
                include ('views/freeCarsList.php');
 
             }
@@ -142,6 +142,22 @@ class RentController
 
         $rentList = $this->rentModel::getAllRents();
         include './views/rentlist.php';
+    }
+
+    public function myRents()
+    {
+        require_once('checkLogin.php');
+
+        $rentList = $this->rentModel::getUserRents(unserialize($_COOKIE["user"])['id']);
+        include './views/myRentlist.php';
+    }
+
+    public function calendar()
+    {
+        require_once('checkLogin.php');
+        require_once('checkAdmin.php');
+        $rentList = $this->rentModel::getAllRents();
+        include './views/calendar.php';
     }
 
 }

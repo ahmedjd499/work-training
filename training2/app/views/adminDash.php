@@ -33,9 +33,10 @@ if (!(unserialize($_COOKIE['user'])['role'] == "admin")) {
         <aside class="aside">
 
             <a class="nav" href="#" onclick="loadContent('index.php?action=profile');">My Profile</a>
-            <a class="nav" href="#" onclick="loadContent('index.php?action=allUsers');">All Users</a>
-            <a class="nav" href="#" onclick="loadContent('index.php?action=allCars');">All cars</a>
-            <a class="nav" href="#" onclick="loadContent('index.php?action=allRents');">All rents</a>
+            <a class="nav" href="#" onclick="loadContent('index.php?action=allUsers');"> Users</a>
+            <a class="nav" href="#" onclick="loadContent('index.php?action=allCars');"> cars</a>
+            <a class="nav" href="#" onclick="loadContent('index.php?action=allRents');"> rents</a>
+            <a class="nav" href="#" onclick="loadContent('index.php?action=calendar');">calender</a>
             <a class="nav" href="index.php?action=logout">log out</a>
 
         </aside>

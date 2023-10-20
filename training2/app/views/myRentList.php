@@ -1,3 +1,6 @@
+
+
+
 <style>
 
 .head{
@@ -6,30 +9,25 @@
     justify-content: space-between;
 }
 
-td{
-    border-left: 1px solid gray;
-}
+
 </style>
 
 
 <div class="head">
 
 
-<h1 >rents list</h1>
+<h1 >My rents list</h1>
 
 </div>
                 <table class='display' id="tab">
                     <thead>
                         <tr>
-                            <th>Rent ID</th>
-                            <th>User Email</th>
-                            <th>Car ID</th>
-                            <th>Car Model</th>
-                            <th>Car Marque</th>
-                            <th>Hourly Price</th>
-                            <th>Start</th>
-                            <th>End</th>
-                            <th>Total Price</th>
+                            <th> car marque</th>
+                            <th>car model</th>
+                            <th>hourly price</th>
+                            <th>rent start</th>
+                            <th>rent end</th>
+                            <th>Total price</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,11 +39,8 @@ td{
         foreach ($rentList as $rent) {
             
             echo "<tr>";
-            echo "<td>" . $rent["id"] . "</td>";
-            echo "<td>" . $rent["email"] . "</td>";
-            echo "<td>" . $rent["id"] . "</td>";
-            echo "<td>" . $rent["model"] . "</td>";
             echo "<td>" . $rent["marque"] . "</td>";
+            echo "<td>" . $rent["model"] . "</td>";
             echo "<td>" . $rent["hourly_price"] . " $</td>";
             echo "<td>" . $rent["rent_start"] . "</td>";
             echo "<td >" . $rent["rent_end"] . "</td>";
@@ -63,3 +58,4 @@ td{
         });
 
     </script>
+    
