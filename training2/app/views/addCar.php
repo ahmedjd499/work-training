@@ -2,32 +2,13 @@
 <html>
 <head>
     <title>Add Car</title>
-    <link rel="stylesheet" type="text/css" href="./public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+    <link rel="icon" href="public/logo.png" type="image/x-icon">
+
 </head>
 <body>
-    <style>
-             .chosen-image{
-    width: 7rem;
-    height: 7rem;
-    margin: 1rem;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    padding: 5px;
-    outline:1px solid plum
 
-}
-
-.chosen_photos{
-    min-height: 5rem;
-    outline: 1px solid #ccc;
-    margin: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-    </style>
-    <form action="index.php?action=addCar" method="POST" enctype="multipart/form-data" class="car-form">
+    <form action="index.php?action=addCar" method="POST" enctype="multipart/form-data" class="car-form flex-col">
         <h1 class="form-title">Add Car</h1>
 
         <input type="text" name="marque" required placeholder="Enter a car marque" class="form-input" id="car-marque">
@@ -39,10 +20,10 @@
         <h4>uploaded photos</h1>
     <div class="chosen_photos" id="chosen-photos">no photos was uploaded</div>
 
-        <div class="form-buttons">
-            <button type="submit" class="submit-button">add  Car</button>
+        <div class="flex-row">
+            <button type="submit" class="btn">add  Car</button>
             or
-            <a href="index.php?action=admin&whereTo=cars" class="login-link">cancel</a>
+            <a href="index.php?action=admin&whereTo=cars" class="link">cancel</a>
         </div>
     </form>
 

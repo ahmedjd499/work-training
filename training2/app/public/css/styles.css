@@ -207,14 +207,7 @@ input[type="submit"]:hover {
   background-color: #0056a4;
 }
 
-.car-form {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+
 
 /* Style the form title */
 .form-title {

@@ -23,16 +23,21 @@ if (!(unserialize($_COOKIE['user'])['role'] == "admin")) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css" rel="stylesheet" />
+    <link rel="icon" href="public/logo.png" type="image/x-icon">
 </head>
 
 <body>
-    <div class="main">
+
+
+
+
+    <div class="dash">
         <aside class="aside">
 
-            <a class="nav" href="#" onclick="loadContent('index.php?action=profile');">My Profile</a>
+            <a class="nav" href="#" onclick="loadContent('index.php?action=profile&isAdmin=admin');">Profile</a>
             <a class="nav" href="#" onclick="loadContent('index.php?action=allUsers');"> Users</a>
             <a class="nav" href="#" onclick="loadContent('index.php?action=allCars');"> cars</a>
             <a class="nav" href="#" onclick="loadContent('index.php?action=allRents');"> rents</a>
@@ -40,7 +45,7 @@ if (!(unserialize($_COOKIE['user'])['role'] == "admin")) {
             <a class="nav" href="index.php?action=logout">log out</a>
 
         </aside>
-        <div class="xx">
+        <div class="maindash">
 
 
             <div class="content">
@@ -48,7 +53,8 @@ if (!(unserialize($_COOKIE['user'])['role'] == "admin")) {
                 <?php 
                     if(isset($_GET['whereTo']) && $_GET['whereTo']=='cars')
                   {  
-                      echo "<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>";
+    
+    echo "<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>";
                       echo "<script>
                     function loadContent(page) {
                         $.ajax({
@@ -74,29 +80,32 @@ if (!(unserialize($_COOKIE['user'])['role'] == "admin")) {
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js"></script>
+   
+   
+   <script>
         $(document).ready(function() {
             $('#tab').DataTable();
         });
-    </script>
-    <script>
         function loadContent(page) {
 
-            $.ajax({
-                url: page,
-                type: 'GET',
-                success: function(data) {
-                    // Replace the content of the "content" div with the response from the server.
-                    $('.content').html(data);
-                },
-                error: function() {
-                    // Handle the error case, e.g., show an error message.
-                    alert('Error loading content.');
-                }
-            });
-        }
+$.ajax({
+    url: page,
+    type: 'GET',
+    success: function(data) {
+        // Replace the content of the "content" div with the response from the server.
+        $('.content').html(data);
+        $(document).ready(function() {
+            $('#tab').DataTable();
+        });
+    },
+    error: function() {
+        // Handle the error case, e.g., show an error message.
+        alert('Error loading content.');
+    }
+});
+}
     </script>
     <script>
         $(document).ready(function() {
@@ -144,6 +153,7 @@ if (!(unserialize($_COOKIE['user'])['role'] == "admin")) {
             })
         }
     </script>
+
 
 </body>
 

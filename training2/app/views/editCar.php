@@ -11,111 +11,26 @@ if (!isset($_COOKIE['user'])) {
 <html>
 
 <head>
-    <title>Edit Profile</title>
-    <style>
-        h1 {
-            text-align: center;
-        }
+    <title>Edit car</title>
+    <link rel="stylesheet" type="text/css" href="./public/css/style.css">
+    <link rel="icon" href="public/logo.png" type="image/x-icon">
 
-        .form-container {
-            /* Adjust the max-width as needed */
-            max-width: 50rem;
-            margin: 0 auto;
-            padding: 1rem;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-container form {
-            padding: 1rem;
-        }
-
-
-
-        label {
-            display: block;
-            margin: 15px;
-        }
-
-        input[type="text"],
-        input[type="file"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px auto;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-
-
-
-        input[type="submit"] {
-            background-color: #0074cc;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 10px auto;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056a4;
-        }
-
-        #PhotosContainer {
-            width: 100%;
-            background-color: white;
-            outline: 1px solid #ccc;
-            margin: 0 auto;
-
-        }
-
-        #h1,
-        #closebtn {
-            display: none;
-        }
-
-        .chosen-image{
-    width: 10rem;
-    height: 10rem;
-    margin: 1rem;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    padding: 5px;
-    outline:1px solid plum
-
-}
-
-.chosen_photos{
-    min-height: 5rem;
-    outline: 1px solid #ccc;
-    margin: 0.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-    </style>
 </head>
 
 <body>
-    <h1>Edit Profile</h1>
 
-    <div class="form-container">
-        <form method="post" action="index.php?action=editCar&id=<?php echo $car['id']; ?>" enctype="multipart/form-data" class='ff'>
+        <form method="post" action="index.php?action=editCar&id=<?php echo $car['id']; ?>" enctype="multipart/form-data" class='car-form flex-col'>
+        <h1>Edit Car</h1>
 
             <label for="model">New model:</label>
-            <input type="text" name="model" value="<?php echo $car['model']; ?>" required><br>
+            <input type="text" name="model" value="<?php echo $car['model']; ?>" class="form-input" required><br>
             <label for="marque">New marque:</label>
-            <input type="text" name="marque" value="<?php echo $car['marque']; ?>"><br>
+            <input type="text" name="marque" value="<?php echo $car['marque']; ?>" class="form-input"><br>
             <label for="hourly_price">Hourly price:</label>
-            <input type="text" name="hourly_price" value="<?php echo $car['hourly_price']; ?>"><br>
+            <input type="text" name="hourly_price" value="<?php echo $car['hourly_price']; ?>" class="form-input"><br>
 
 
-            <input type="file" name="file[]" accept="image/*" id="file" multiple>
+            <input type="file" name="file[]" accept="image/*" id="file" multiple class="form-input">
             <h1>uploaded photos</h1>
     <div class="chosen_photos" id="chosen-photos">no photos was uploaded</div>
     <h1>old photos</h1>
@@ -123,9 +38,12 @@ if (!isset($_COOKIE['user'])) {
             <div id='PhotosContainer'>
 
             </div>
-            <input type="submit" value="Save Changes">
+            <div class="flex-row">
+            <button type="submit" class="btn">save  changes</button>
+            or
+            <a href="index.php?action=admin&whereTo=cars" class="link">cancel</a>
+        </div>
         </form>
-    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       

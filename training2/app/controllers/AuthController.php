@@ -23,6 +23,8 @@ class AuthController
             } else {
                 // Invalid login, show an error message
                 echo '<script>alert("Invalid credentials. Please try again.")</script>';
+            include '../app/views/login.php';
+
             }
         } else {
             // Load the login form view

@@ -34,6 +34,7 @@ class UserController
             if ($this->userModel::getUserByEmail($email)) {
                 // User with the same email already exists
                 echo '<script>alert("User with this email already exists.")</script>';
+                include './views/create.php';
 
 
             } else {
@@ -75,7 +76,7 @@ class UserController
 
             if($_POST['new_password']=="") $newPassWord=unserialize($_COOKIE['user'])['password'] ;
             
-            else $newPassWord = hash('sha256', Salt .filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+            else $newPassWord = hash('sha256', Salt .filter_input(INPUT_POST, 'new_password', FILTER_SANITIZE_STRING));
             if ( !($newEmail == unserialize($_COOKIE['user'])["email"]) && $this->userModel::getUserByEmail($newEmail)) {
                 // User with the same email already exists
                 echo '<script>alert("this email is already in use")</script>';
@@ -85,8 +86,8 @@ class UserController
                     setcookie('user', serialize($this->userModel::getUserByEmail($newEmail)), time() + 3600, '/');
 
                     echo '<script>alert("profile updated successfully")</script>';
-
-                    header('Location: ./views/profile.php');
+if(unserialize($_COOKIE['user'])["role"]==='admin') header('Location: index.php?action=admin');
+                   else header('Location: index.php?action=profile');
 
 
                 } else {
@@ -123,7 +124,7 @@ class UserController
                 echo '<script>alert("this email is already in use")</script>';
             } else {
                 // Create a new user
-                if ($this->userModel::updateUser($id, $newEmail, $newPassWord)) {
+                if ($this->userModel::updateUser($id, $newEmail, $newPassWord,$user['photo'])) {
 
                     echo '<script>alert("profile updated successfully")</script>';
 

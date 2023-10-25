@@ -16,6 +16,8 @@ $user = unserialize($_COOKIE['user']);
 <html>
 
 <head>
+<link rel="icon" href="public/logo.png" type="image/x-icon">
+
     <title>Edit Profile</title>
     <style>
  

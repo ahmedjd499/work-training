@@ -1,44 +1,10 @@
-<style>
-    .car_img {
-        width: 10rem;
-        height: 10rem;
-        margin: 1rem;
-        object-fit: cover;
-        border-radius: 0.5rem;
-        padding: 5px;
-        outline: 1px solid plum
-    }
 
-    .car-imgs {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .delbtn {
-        position: relative;
-        text-align: center;
-        top: -5rem;
-        left: -2rem;
-        width: 1rem;
-        height: 1rem;
-        outline: 1px solid black;
-        border-radius: 50%;
-        font-size: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: rosybrown;
-        color: white;
-        padding: 5px;
-        cursor: pointer;
-    }
-</style>
 <div class="car-imgs">
-
-    <h1 id='h1'>car : photos </h1>
-    <button type=button style='cursor:pointer;margin:0.5rem;padding:0.5rem' id='closebtn'>❌</button><br>
+<div>
+<h1 id='h1'>car : photos </h1>
+    <button class="btn" id='closebtn'>❌</button><br>
+</div>
+   
     <?php
     if (count($carsPhotosList) > 0)
         foreach ($carsPhotosList as $carImg) {

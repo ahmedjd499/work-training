@@ -1,29 +1,7 @@
 
-<style>
-    .profile-image{
-        width: 3rem;
-        height: 3rem;
-        overflow: hidden;
-        object-fit: cover;
-        border-radius: 50%;
-    }
-</style>
 <h1>users list</h1>
 
-<form action="" id="form" method="POST" class="searchForm">
-    <div class="form-row">
-        <input type="text" placeholder="Search for users" name="search" id="searchInput" required onkeyup="performSearch()" class="search-input">
-        <select name="role_filter" id="role_filter" class="filter-select">
-            <option value="">any</option>
-            <option value="admin">admin</option>
-            <option value="user">user</option>
-        </select>
-        <label for="date_filter" class="date-label">Create between</label>
-        <input type="datetime-local" name="date_start" id="date_start" min="2023-10-10T00:00" value="2023-10-10T00:00" class="date-input">
-        <input type="datetime-local" name="date_end" id="date_end" min="2023-10-10T00:00" class="date-input">
-        <button type="submit" class="search-button">Search</button>
-    </div>
-</form>
+
 
 
                 <table class='display' id="tab">

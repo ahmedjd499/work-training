@@ -19,155 +19,30 @@ $user = unserialize($_COOKIE['user']);
 <head>
     <title>User Profile</title>
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="public/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <link rel="icon" href="public/logo.png" type="image/x-icon">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
-
-        .profile {
-            max-width: 30rem;
-            margin: 3rem auto;
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .profile-image {
-            display: block;
-            margin: 0 auto;
-            outline: 1px solid blue;
-            border-radius: 50%;
-        }
-
-        p {
-            margin: 10px 1rem;
-        }
-
-        a,button {
-            text-decoration: none;
-            background-color: #0074cc;
-            color: white;
-            margin: 0.5rem;
-            text-align: center;
-            padding: 5px 10px;
-            border-radius: 4px;
-            margin-right: 10px;
-            border:none ;
-        }
-
-        a:hover {
-            background-color: #0056a4;
-        }
-
-        #photo {
-            display: block;
-            margin: 0 auto;
-            outline: 1px solid blue;
-            border-radius: 50%;
-        }
-
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 95%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 999;
-            margin: 2rem;
-            overflow-x: auto;
-
-
-        }
-        .freeCars{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .popup-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            width:60%;
-            padding: 1rem;
-
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.3s ease-in-out;
-
-        }
-
-        .popup-card {
-            padding: 20px;
-            text-align: center;
-            
-        }
-
-        .popup-card h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .popup-card p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        #close-popup {
-            background-color: lightcoral;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 18px;
-            position: absolute;
-            right: 0;
-        
-        }
-
-        #close-popup:hover {
-            background-color: lightpink;
-        }
-        #open-popup{
-            cursor: pointer;
-            font-size: 18px;
-            position: absolute;
-            right:0;
-            margin-right: 8rem;
-            margin-top: 3rem;
-        }
-        .myRents{
-            width: 80%;
-            padding: 2rem;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="profile">
+
+<div class="dash">
+        <aside class="aside">
+
+            <a class="nav" href="#" onclick="setDisplay('profile','myRents');">Profile</a>
+            <a class="nav" href="#" onclick="setDisplay('myRents','profile');">MY rents</a>
+                <button class="nav" id='open-popup'>rent a car</button>
+        <a class="nav" href="index.php?action=logout">Logout</a>
+
+           
+
+        </aside>
+        <div class="maindash">
+        <div class="profile">
         <h1>User Profile</h1>
 
         <!-- Display user information -->
-        <img class="profile-image" src="public/uploads/<?= (file_exists("public/uploads/" . $user['photo'])) ?    $user['photo'] :  'default.png'; ?>" alt="Profile Image" width="100" height="100" id="photo">
+        <img class="profile-image" src="public/uploads/<?= (file_exists("public/uploads/" . $user['photo'])) ?    $user['photo'] :  'default.png'; ?>" alt="Profile Image" width="100" height="100" >
 
         <p><strong>Email:</strong> <?php echo $user['email']; ?></p>
         <p><strong>Role:</strong> <?php echo $user['role']; ?></p>
@@ -176,10 +51,8 @@ $user = unserialize($_COOKIE['user']);
         <!-- You can also add links to edit profile, change password, etc. -->
         <a href="index.php?action=edit">Edit Profile</a>
         <a href="index.php?action=delete&id=<?php echo $user['id']; ?>">Delete Profile</a>
-        <a href="index.php?action=logout">Logout</a>
     </div>
 
-    <button  id='open-popup'>rent a car</button>
 
         <div class="myRents">
 
@@ -196,6 +69,11 @@ $user = unserialize($_COOKIE['user']);
             </div>
         </div>
     </div>
+        </div>
+
+    </div>
+
+ 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
@@ -216,7 +94,17 @@ $user = unserialize($_COOKIE['user']);
                 }
             });
         }
-        loadContent('index.php?action=myRents','.myRents')
+        loadContent('index.php?action=myRents','.myRents');
+
+        function setDisplay (div1,div2){
+           const div_1= document.getElementsByClassName(div1)[0];
+           const div_2= document.getElementsByClassName(div2)[0];
+           div_1.style.display=  div1==='profile'? 'flex': 'block'
+         
+           div_2.style.display='none'
+
+
+        }
     </script>
     <script>
         const popupOverlay = document.querySelector(".popup-overlay");

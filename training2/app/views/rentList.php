@@ -1,18 +1,7 @@
-<style>
-
-.head{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-td{
-    border-left: 1px solid gray;
-}
-</style>
 
 
-<div class="head">
+
+<div class="flex-row">
 
 
 <h1 >rents list</h1>
@@ -37,6 +26,7 @@ td{
 
 
 <?php
+if(count($rentList)>0)
         // Output data of each row
         foreach ($rentList as $rent) {
             
@@ -52,6 +42,7 @@ td{
             echo "<td >" . $rent["total_price"] . " $</td>";
             echo "</tr>";
         }
+else echo 'no rents is booked yet' ;
 ?>
         
         </tbody>

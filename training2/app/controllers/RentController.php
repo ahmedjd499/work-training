@@ -34,11 +34,6 @@ class RentController
     public function loadRentForm()
     {
         require('checkLogin.php');
- 
-
-           
-    
-           
             include './views/addRent.php';
         
     }
@@ -67,6 +62,15 @@ class RentController
                 echo '<script>alert("rent failed please try again")</script>';
             }else {
                $carsList=$this->carModel::getFreeCar($date_start,$date_end);
+               $nbrHours=$this->calculateHoursDifference($date_start,$date_end);
+               for($i=0;$i<count($carsList);$i++)
+               {
+                  $totalPrice=$nbrHours *  $carsList[$i]['hourly_price'];
+
+                $carsList[$i]['photos']= $this->carModel::getAllPhotos($carsList[$i]['id']);
+                $carsList[$i]['total_price']= $totalPrice ;
+               }
+
                include ('views/freeCarsList.php');
 
             }
